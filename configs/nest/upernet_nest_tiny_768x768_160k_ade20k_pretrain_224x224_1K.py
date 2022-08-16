@@ -2,13 +2,14 @@ _base_ = [
     '../_base_/models/upernet_nest_tiny.py', '../_base_/datasets/cityscapes_768x768.py',
     '../_base_/default_runtime.py', '../_base_/schedules/schedule_40k.py'
 ]
-checkpoint_file = '/content/drive/MyDrive/Transformer/Nest-Semantic-Segmentation/checkpoints/nest_tiny_224.pth'  # noqa
+# checkpoint_file = '/content/drive/MyDrive/Transformer/Nest-Semantic-Segmentation/checkpoints/nest_tiny_224.pth'  # noqa
+checkpoint_file = None
 model = dict(
     backbone=dict(
         init_cfg=dict(type='Pretrained', checkpoint=checkpoint_file),
-        embed_dims=96,
-        depths=[2, 2, 8],
-        num_heads=[3, 6, 12],
+        embed_dims=(96, 129, 384),
+        depths=(2, 2, 8),
+        num_heads=(3, 6, 12),
         use_abs_pos_embed=False,
         drop_path_rate=0.3,
         patch_norm=True),
